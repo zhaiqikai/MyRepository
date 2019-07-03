@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.21.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.baosight.xinsight.tools</groupId>
+ 	<artifactId>TsdbTools</artifactId>
+ 	<version>0.0.1-SNAPSHOT</version>
+ 	<name>TsdbTools</name>
+ 	<description>TsdbTools</description>
+
+	<properties>
+		<java.version>1.7</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+
+		<dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+		<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>jaxen</groupId>
+    		<artifactId>jaxen</artifactId>
+		</dependency>
+		<dependency>
+    		<groupId>dom4j</groupId>
+    		<artifactId>dom4j</artifactId>
+		</dependency>
+		
+		<dependency>
+          <groupId>org.springframework.boot</groupId>
+     	  <artifactId>spring-boot-starter-data-jpa</artifactId>
+    	</dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.json-lib-2.1-jdk15.cn</groupId>
+            <artifactId>json-lib-2.1-jdk15</artifactId>
+            <version>2.1</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/json-lib-2.1-jdk15.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.base64-2.3.8.cn</groupId>
+            <artifactId>base64-2.3.8</artifactId>
+            <version>2.3.8</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/base64-2.3.8.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xinsight-common-2.1.0.cn</groupId>
+            <artifactId>xinsight-common</artifactId>
+            <version>2.1.0</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/xinsight-common-2.1.0.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xinsight-pds-tsdb-client-2.1.0.cn</groupId>
+            <artifactId>xinsight-pds-tsdb-client</artifactId>
+            <version>2.1.0</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/xinsight-pds-tsdb-client-2.1.0.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xinsight-pds-tsdb-common.cn</groupId>
+            <artifactId>xinsight-pds-tsdb-common</artifactId>
+            <version>2.1.0</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/xinsight-pds-tsdb-common-2.1.0.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.guava-18.0.cn</groupId>
+            <artifactId>guava-18.0</artifactId>
+            <version>18.0</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/guava-18.0.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hadoop-common-2.6.0-cdh5.11.0.cn</groupId>
+            <artifactId>hadoop-common-2.6.0-cdh5.11.0</artifactId>
+            <version>2.6.0</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/hadoop-common-2.6.0-cdh5.11.0.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hbase-common-1.2.0-cdh5.11.0.cn</groupId>
+            <artifactId>hbase-common-1.2.0-cdh5.11.0</artifactId>
+            <version>1.2.0</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/hbase-common-1.2.0-cdh5.11.0.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.htrace-core-3.0.4.cn</groupId>
+            <artifactId>htrace-core-3.0.4</artifactId>
+            <version>3.0.4</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/htrace-core-3.0.4.jar
+            </systemPath>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.htrace-core-3.2.0-incubating.cn</groupId>
+            <artifactId>htrace-core-3.2.0-incubating</artifactId>
+            <version>3.2.0</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/htrace-core-3.2.0-incubating.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.httpclient-4.2.5.cn</groupId>
+            <artifactId>httpclient-4.2.5</artifactId>
+            <version>4.2.5</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/httpclient-4.2.5.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.httpcore-4.2.5.cn</groupId>
+            <artifactId>httpcore-4.2.5</artifactId>
+            <version>4.2.5</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/httpcore-4.2.5.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jackson-core-asl-1.9.11.cn</groupId>
+            <artifactId>jackson-core-asl-1.9.11</artifactId>
+            <version>1.9.11</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/jackson-core-asl-1.9.11.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jackson-core-lgpl-1.9.11.cn</groupId>
+            <artifactId>jackson-core-lgpl-1.9.11</artifactId>
+            <version>1.9.11</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/jackson-core-lgpl-1.9.11.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jackson-jaxrs-1.9.11.cn</groupId>
+            <artifactId>jackson-jaxrs-1.9.11</artifactId>
+            <version>1.9.11</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/jackson-jaxrs-1.9.11.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jackson-mapper-asl-1.9.11.cn</groupId>
+            <artifactId>jackson-mapper-asl-1.9.11</artifactId>
+            <version>1.9.11</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/jackson-mapper-asl-1.9.11.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jackson-mapper-lgpl-1.9.11.cn</groupId>
+            <artifactId>jackson-mapper-lgpl-1.9.11</artifactId>
+            <version>1.9.11</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/jackson-mapper-lgpl-1.9.11.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jackson-mrbean-1.9.11.cn</groupId>
+            <artifactId>jackson-mrbean-1.9.11</artifactId>
+            <version>1.9.11</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/jackson-mrbean-1.9.11.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jackson-smile-1.9.11.cn</groupId>
+            <artifactId>jackson-smile-1.9.11</artifactId>
+            <version>1.9.11</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/jackson-smile-1.9.11.jar
+            </systemPath>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.jackson-xc-1.9.11.cn</groupId>
+            <artifactId>jackson-xc-1.9.11</artifactId>
+            <version>1.9.11</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/jackson-xc-1.9.11.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.libthrift-0.9.3.cn</groupId>
+            <artifactId>libthrift-0.9.3</artifactId>
+            <version>0.9.3</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/libthrift-0.9.3.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.netty-3.6.6.Final.cn</groupId>
+            <artifactId>netty-3.6.6.Final</artifactId>
+            <version>3.6.6</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/netty-3.6.6.Final.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.netty-all-4.0.29.Final.cn</groupId>
+            <artifactId>netty-all-4.0.29.Final.jar</artifactId>
+            <version>4.0.29</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/netty-all-4.0.29.Final.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.protobuf-java-2.5.0.cn</groupId>
+            <artifactId>protobuf-java-2.5.0</artifactId>
+            <version>2.5.0</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/protobuf-java-2.5.0.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.slf4j-api-1.7.7.cn</groupId>
+            <artifactId>slf4j-api-1.7.7</artifactId>
+            <version>1.7.7</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/slf4j-api-1.7.7.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.commons-beanutils-1.7.0.cn</groupId>
+            <artifactId>commons-beanutils-1.7.0</artifactId>
+            <version>1.7.0</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/commons-beanutils-1.7.0.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.commons-collections-3.1.cn</groupId>
+            <artifactId>commons-collections-3.1</artifactId>
+            <version>3.1</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/commons-collections-3.1.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.commons-lang-2.6.cn</groupId>
+            <artifactId>commons-lang-2.6</artifactId>
+            <version>2.6</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/commons-lang-2.6.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.commons-logging-1.2.cn</groupId>
+            <artifactId>commons-logging-1.2</artifactId>
+            <version>1.2</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/commons-logging-1.2.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.commons-logging.cn</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/commons-logging.jar
+            </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ezmorph-1.0.3.cn</groupId>
+            <artifactId>ezmorph-1.0.3</artifactId>
+            <version>1.0.3</version>
+            <scope>system</scope>
+            <systemPath>
+                ${pom.basedir}/src/main/resources/lib/ezmorph-1.0.3.jar
+            </systemPath>
+        </dependency>
+
+	</dependencies>
+
+    <build>
+        <finalName>TsdbTools</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/webapp</directory>
+                <targetPath>META-INF/resources</targetPath>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.4.2.RELEASE</version>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                    <layout>JAR</layout>
+                    <mainClass>com.baosight.tools.Demo1Application</mainClass>
+                </configuration>
+
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
